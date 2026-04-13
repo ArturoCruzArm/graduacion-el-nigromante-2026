@@ -183,21 +183,30 @@ body.splash-active > *:not(#splash) { visibility: hidden; }
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <span class="tl-badge" data-campo="recepcion-fecha">7 de julio de 2026</span>
-        <div class="tl-title">🎉 Ceremonia y Fiesta</div>
-        <p class="tl-sub"><strong data-campo="recepcion-hora">3:00 PM</strong> — <span data-campo="recepcion-lugar">Quinta Las Palmas</span></p>
-        <p class="tl-sub" data-campo="recepcion-direccion">Camino antiguo a km 1.1, San Antonio de los Tepetates, Gto.</p>
-        <p class="tl-sub" style="margin-top:6px;"><a href="https://maps.app.goo.gl/yruaiEpHRo7muS3A7" target="_blank" data-campo="recepcion-maps" style="color:var(--secondary);">📍 Ver en mapa</a></p>
-        <p class="tl-sub" style="margin-top:6px;">Entrega de diplomas digitales, bailes, protocolo y celebración. Habrá tomas con dron.</p>
+        <span class="tl-badge" data-campo="despedida-fecha">7 de julio de 2026</span>
+        <div class="tl-title">🏫 Despedida en la Escuela</div>
+        <p class="tl-sub"><strong>10:30 AM</strong> — Desayuno sorpresa</p>
+        <p class="tl-sub"><strong>12:50 PM</strong> — Último toque</p>
+        <p class="tl-sub" style="margin-top:6px;">Despedida escolar con los alumnos y maestros.</p>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
         <span class="tl-badge" data-campo="ceremonia-fecha">8 de julio de 2026</span>
         <div class="tl-title">⛪ Misa de Graduación</div>
-        <p class="tl-sub"><strong data-campo="ceremonia-hora">11:00 AM</strong> — <span data-campo="ceremonia-lugar">Templo de San Antonio de los Tepetates</span></p>
+        <p class="tl-sub"><strong data-campo="ceremonia-hora">9:00 AM</strong> — <span data-campo="ceremonia-lugar">Templo de San Antonio de los Tepetates</span></p>
         <p class="tl-sub" data-campo="ceremonia-direccion">C. del Mortero 311, San Antonio de los Tepetates, Gto.</p>
         <p class="tl-sub" style="margin-top:6px;"><a href="https://maps.app.goo.gl/77WGNaSvurbf68wN7" target="_blank" data-campo="ceremonia-maps" style="color:var(--secondary);">📍 Ver en mapa</a></p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-badge" data-campo="recepcion-fecha">8 de julio de 2026</span>
+        <div class="tl-title">🎉 Ceremonia y Fiesta</div>
+        <p class="tl-sub"><strong data-campo="recepcion-hora">Después de misa</strong> — <span data-campo="recepcion-lugar">Quinta Las Palmas</span></p>
+        <p class="tl-sub" data-campo="recepcion-direccion">Camino antiguo a km 1.1, San Antonio de los Tepetates, Gto.</p>
+        <p class="tl-sub" style="margin-top:6px;"><a href="https://maps.app.goo.gl/yruaiEpHRo7muS3A7" target="_blank" data-campo="recepcion-maps" style="color:var(--secondary);">📍 Ver en mapa</a></p>
+        <p class="tl-sub" style="margin-top:6px;">Entrega de diplomas digitales, bailes, protocolo y celebración. Habrá tomas con dron.</p>
       </div>
 
     </div>
@@ -216,7 +225,7 @@ body.splash-active > *:not(#splash) { visibility: hidden; }
 <script>
 // Cuenta regresiva — fecha de graduación (actualizar cuando se confirme)
 (function() {
-  var target = new Date(2026, 6, 7, 15, 0, 0); // 7 julio 2026 — acto de graduación 3 PM
+  var target = new Date(2026, 6, 7, 10, 30, 0); // 7 julio 2026 — despedida escuela 10:30 AM
   function tick() {
     var diff = target - new Date();
     if (diff <= 0) { document.getElementById('countdown').remove(); return; }
