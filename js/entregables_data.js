@@ -122,7 +122,7 @@ var ENTREGABLES = {
       "DSC_2163Nigromante4x6.webp"
     ]
   },
-  "6x8": {
+  "Grupales": {
     "base": "img/Nigromante/6x8/",
     "fotos": [
       "en1.webp",
@@ -135,7 +135,7 @@ var ENTREGABLES = {
       "enm.webp"
     ]
   },
-  "Pen Drive": {
+  "Personal Docente": {
     "base": "img/Nigromante/pd/",
     "fotos": [
       "DSC_1071seundaria 3c4x6.webp",
