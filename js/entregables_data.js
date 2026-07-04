@@ -2,7 +2,6 @@ var ENTREGABLES = {
   "4x6 SI": {
     "base": "img/Nigromante/4x6/SI/",
     "fotos": [
-      "DSC_2074Nigromante4x6.webp",
       "DSC_2078Nigromante4x6.webp",
       "DSC_2080Nigromante4x6.webp",
       "DSC_2087Nigromante4x6.webp",
@@ -28,28 +27,16 @@ var ENTREGABLES = {
       "DSC_2151Nigromante4x6.webp",
       "DSC_2155Nigromante4x6.webp",
       "DSC_2158Nigromante4x6.webp",
-      "DSC_2161Nigromante4x6.webp",
       "DSC_2165Nigromante4x6.webp",
       "DSC_2166Nigromante4x6.webp",
-      "DSC_2173Nigromante4x6.webp"
+      "DSC_2173Nigromante4x6.webp",
+      "DSC_2074Nigromante4x6.webp",
+      "DSC_2161Nigromante4x6.webp"
     ]
   },
   "4x6 NO": {
     "base": "img/Nigromante/4x6/NO/",
     "fotos": [
-      "DSC_2061Nigromante4x6.webp",
-      "DSC_2062Nigromante4x6.webp",
-      "DSC_2063Nigromante4x6.webp",
-      "DSC_2064Nigromante4x6.webp",
-      "DSC_2065Nigromante4x6.webp",
-      "DSC_2066Nigromante4x6.webp",
-      "DSC_2067Nigromante4x6.webp",
-      "DSC_2068Nigromante4x6.webp",
-      "DSC_2069Nigromante4x6.webp",
-      "DSC_2070Nigromante4x6.webp",
-      "DSC_2071Nigromante4x6.webp",
-      "DSC_2072Nigromante4x6.webp",
-      "DSC_2073Nigromante4x6.webp",
       "DSC_2075Nigromante4x6.webp",
       "DSC_2076Nigromante4x6.webp",
       "DSC_2077Nigromante4x6.webp",
@@ -109,9 +96,6 @@ var ENTREGABLES = {
       "DSC_2156Nigromante4x6.webp",
       "DSC_2157Nigromante4x6.webp",
       "DSC_2159Nigromante4x6.webp",
-      "DSC_2160Nigromante4x6.webp",
-      "DSC_2162Nigromante4x6.webp",
-      "DSC_2163Nigromante4x6.webp",
       "DSC_2164Nigromante4x6.webp",
       "DSC_2167Nigromante4x6.webp",
       "DSC_2168Nigromante4x6.webp",
@@ -119,7 +103,23 @@ var ENTREGABLES = {
       "DSC_2170Nigromante4x6.webp",
       "DSC_2171Nigromante4x6.webp",
       "DSC_2172Nigromante4x6.webp",
-      "DSC_2173Nigromante4x6.webp"
+      "DSC_2173Nigromante4x6.webp",
+      "DSC_2061Nigromante4x6.webp",
+      "DSC_2062Nigromante4x6.webp",
+      "DSC_2063Nigromante4x6.webp",
+      "DSC_2064Nigromante4x6.webp",
+      "DSC_2065Nigromante4x6.webp",
+      "DSC_2066Nigromante4x6.webp",
+      "DSC_2067Nigromante4x6.webp",
+      "DSC_2068Nigromante4x6.webp",
+      "DSC_2069Nigromante4x6.webp",
+      "DSC_2070Nigromante4x6.webp",
+      "DSC_2071Nigromante4x6.webp",
+      "DSC_2072Nigromante4x6.webp",
+      "DSC_2073Nigromante4x6.webp",
+      "DSC_2160Nigromante4x6.webp",
+      "DSC_2162Nigromante4x6.webp",
+      "DSC_2163Nigromante4x6.webp"
     ]
   },
   "6x8": {
