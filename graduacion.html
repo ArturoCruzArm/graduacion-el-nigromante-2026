@@ -22,6 +22,11 @@ html,body{height:100%;overflow:hidden;}
 .stat-box{flex:1;min-width:80px;background:#fff;border-radius:8px;padding:6px 8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06);border-top:3px solid var(--secondary);}
 .stat-box .num{font-size:clamp(1rem,2.5vw,1.4rem);font-weight:800;color:var(--primary);}
 .stat-box .lbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.04em;color:#888;}
+.gallery-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;padding:4px;background:#edf0f4;border-radius:10px;}
+.gallery-tab{border:0;border-radius:7px;padding:9px 10px;background:transparent;color:#667085;font-weight:700;font-size:.78rem;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s;}
+.gallery-tab span{display:inline-flex;align-items:center;justify-content:center;min-width:24px;margin-left:5px;padding:1px 6px;border-radius:999px;background:rgba(0,0,0,.07);font-size:.68rem;}
+.gallery-tab.active{background:#fff;color:var(--primary);box-shadow:0 2px 8px rgba(0,0,0,.09);}
+.gallery-tab:focus-visible{outline:3px solid var(--secondary);outline-offset:2px;}
 .content-area{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 12px;display:flex;flex-direction:column;}
 .galeria-scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
 .foto-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;padding-bottom:8px;}
@@ -29,6 +34,7 @@ html,body{height:100%;overflow:hidden;}
 .foto-card:hover{transform:scale(1.02);}
 .foto-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
 .foto-card .lbl{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);color:#fff;font-size:.6rem;padding:2px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.foto-card .photo-number{position:absolute;top:4px;left:4px;z-index:2;padding:3px 7px;border-radius:999px;background:var(--secondary);color:var(--primary);font-size:.7rem;font-weight:900;box-shadow:0 1px 5px rgba(0,0,0,.22);}
 .foto-card .dl-btn{position:absolute;top:4px;right:4px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:14px;line-height:1;transition:background .2s;z-index:2;}
 .foto-card .dl-btn:hover{background:var(--secondary);color:var(--primary);}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:200;flex-direction:column;}
@@ -81,7 +87,11 @@ footer{padding:6px 12px;font-size:.72rem;flex-shrink:0;}
 
 <div class="content-area">
   <div class="stats-row">
-    <div class="stat-box"><div class="num" id="st-fotos">0</div><div class="lbl">Fotos</div></div>
+    <div class="stat-box"><div class="num" id="st-fotos">0</div><div class="lbl">Fotos en esta pestaña</div></div>
+  </div>
+  <div class="gallery-tabs" role="tablist" aria-label="Colecciones de graduación">
+    <button class="gallery-tab active" id="tabPrinted" type="button" role="tab" aria-selected="true" onclick="cambiarColeccion('printed')">Ya se veían <span id="countPrinted">0</span></button>
+    <button class="gallery-tab" id="tabNotPrinted" type="button" role="tab" aria-selected="false" onclick="cambiarColeccion('not-printed')">No impresas <span id="countNotPrinted">0</span></button>
   </div>
   <div class="pag-bar" id="pagBar"></div>
   <div class="galeria-scroll">
@@ -119,6 +129,9 @@ var PIN='791';
 var PAGE_SIZE=60;
 var currentPage=0;
 var fotos=[];
+var allFotos=[];
+var originalNumbers={};
+var currentCollection='printed';
 
 document.getElementById('pinInput').addEventListener('input',function(){
   if(this.value===PIN){
@@ -143,8 +156,26 @@ function init(){
     document.getElementById('fotoGrid').innerHTML='<p style="padding:20px;color:#888;">No hay fotos disponibles aun.</p>';
     return;
   }
-  fotos=GRADUACION.fotos;
+  allFotos=GRADUACION.fotos.slice();
+  allFotos.forEach(function(f,i){originalNumbers[f]=i+1;});
+  document.getElementById('countPrinted').textContent=allFotos.filter(isPrinted).length;
+  document.getElementById('countNotPrinted').textContent=allFotos.filter(function(f){return !isPrinted(f);}).length;
+  cambiarColeccion('printed');
+}
+
+function isPrinted(f){return (GRADUACION.normals[f]||'').indexOf('/SI/SI/')!==-1;}
+
+function cambiarColeccion(collection){
+  currentCollection=collection;
+  currentPage=0;
+  fotos=allFotos.filter(function(f){return collection==='printed'?isPrinted(f):!isPrinted(f);});
   document.getElementById('st-fotos').textContent=fotos.length;
+  var printed=document.getElementById('tabPrinted');
+  var notPrinted=document.getElementById('tabNotPrinted');
+  printed.classList.toggle('active',collection==='printed');
+  notPrinted.classList.toggle('active',collection==='not-printed');
+  printed.setAttribute('aria-selected',collection==='printed'?'true':'false');
+  notPrinted.setAttribute('aria-selected',collection==='not-printed'?'true':'false');
   renderGrid();
 }
 
@@ -159,6 +190,7 @@ function renderGrid(){
     var normal=getNormal(f);
     var name=f.replace(/\.\w+$/,'');
     return '<div class="foto-card" onclick="abrirModal(\''+esc(f).replace(/'/g,"\\'")+'\')">'
+      +'<span class="photo-number">#'+originalNumbers[f]+'</span>'
       +'<a class="dl-btn" href="'+normal+'" download="'+esc(f)+'" onclick="event.stopPropagation()" title="Descargar">&#8681;</a>'
       +'<img src="'+thumb+'" loading="lazy" alt="'+esc(name)+'">'
       +'<div class="lbl">'+esc(name)+'</div>'
@@ -195,7 +227,7 @@ function renderModalG(){
   var src=getNormal(file);
   document.getElementById('mImg').src=src;
   document.getElementById('mArchivo').textContent=file;
-  document.getElementById('mCounter').textContent=(modalIdx+1)+' / '+fotos.length;
+  document.getElementById('mCounter').textContent='#'+originalNumbers[file]+' · '+(modalIdx+1)+' / '+fotos.length;
   var dl=document.getElementById('mDescargar');
   dl.href=src;dl.download=file;
 }
